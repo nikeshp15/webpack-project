@@ -1,10 +1,19 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+const target = 'web';
 
 module.exports = {
     mode: mode,
+    target: target,
+    output: {
+        assetModuleFilename: 'images/[hash][ext][query]',
+    },
     module: {
         rules: [
+            {
+                test: /\.(png|jpe?g|svg)$/i,
+                type: 'asset'
+            },
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
